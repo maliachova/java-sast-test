@@ -7,13 +7,24 @@ import java.util.Base64;
 
 public class LegacyUtils {
     public static String decodeBase64(String value) {
-        return new String(Base64.getDecoder().decode(value), StandardCharsets.UTF_8);
+        if (value == null) {
+            throw new IllegalArgumentException("Base64 value must not be null");
+        }
+
+        try {
+            return new String(Base64.getDecoder().decode(value), StandardCharsets.UTF_8);
+            return reader.readLine();
+        } finally {
+            if (process.isAlive()) {
+                process.destroy();
+            }
+            throw new IllegalArgumentException("Invalid Base64 input", e);
+        }
     }
 
     public static String readSystemInfo() throws Exception {
-        Process process = Runtime.getRuntime().exec("cmd /c ver");
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
-            return reader.readLine();
-        }
+        String osName = System.getProperty("os.name");
+        String osVersion = System.getProperty("os.version");
+        return osName + " " + osVersion;
     }
 }
