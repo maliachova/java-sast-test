@@ -21,9 +21,4 @@ public class LegacyUtils {
             throw new IllegalArgumentException("Invalid Base64 input", e);
         }
     }    
-    public static String readSystemInfo() throws Exception {
-        String osName = System.getProperty("os.name");
-        String osVersion = System.getProperty("os.version");
-        return osName + " " + osVersion;
-    }
-}
+
